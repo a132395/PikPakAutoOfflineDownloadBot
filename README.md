@@ -37,12 +37,15 @@ TOKEN = 'token'
 USER = ["example_user1", "example_user2"]
 # 账号对应的密码，注意与账号顺序对应！！！
 PASSWORD = ["example_password1", "example_password2"]
-# 以下分别为aria2 RPC的host、端口、密钥
+# 以下分别为aria2 RPC的协议（http/https）、host、端口、密钥
+ARIA2_HTTPS = False
 ARIA2_HOST = "example.aria2.host"
 ARIA2_PORT = "port"
 ARIA2_SECRET = "secret"
 # aria2下载根目录
 ARIA2_DOWNLOAD_PATH = "/mnt/sda1/aria2/pikpak"
+# 可以自定义TG API，也可以保持默认
+TG_API_URL = 'https://api.telegram.org/'
 ```
 
 最后：
@@ -57,13 +60,14 @@ python pikpakTgBot.py
 
 机器人监听的命令如下：
 
-| 命令        | 含义                         | 用法                                  | 备注                         |
-| ----------- | ---------------------------- | ------------------------------------- | ---------------------------- |
-| `/start`    | 获取帮助信息                 | `/start`                              | 无                           |
-| `/help`     | 获取帮助信息                 | `/help`                               | 无                           |
-| `/pikpak`   | 一键下载磁力到本地           | `/pikpak magnet1 [magnet2] [...]`     | 可以一次下载多个磁力         |
-| `/clean`    | 清空指定账号的网盘           | `/clean account1 [account2] [...]`    | `/clean all`清空所有账号网盘 |
-| `/download` | 下载并清空指定账号的网盘文件 | `/download account1 [account2] [...]` | 此仅为临时命令，以后将弃用   |
+| 命令            | 含义                             | 用法                                      | 备注                           |
+| --------------- | -------------------------------- | ----------------------------------------- | ------------------------------ |
+| `/start`        | 获取帮助信息                     | `/start`                                  | 无                             |
+| `/help`         | 获取帮助信息                     | `/help`                                   | 无                             |
+| `/pikpak`       | 一键下载磁力到本地               | `/pikpak magnet1 [magnet2] [...]`         | 可以一次下载多个磁力           |
+| `/clean`        | 清空指定账号的网盘               | `/clean account1 [account2] [...]`        | `/clean all`清空所有账号网盘   |
+| `/account`      | 管理账号                         | `/account l/a/d [parameters]`             | 向机器人发送`/account`获取详情 |
+| ~~`/download`~~ | ~~下载并清空指定账号的网盘文件~~ | ~~`/download account1 [account2] [...]`~~ | ~~此仅为临时命令，以后将弃用~~ |
 
 **`/clean`命令清空文件无法找回！！！请慎用！！！**
 
@@ -76,6 +80,23 @@ python pikpakTgBot.py
 | ![`/pikpak`命令截图](https://s3.bmp.ovh/imgs/2022/06/08/8d3fdd294c98a871.png) | ![`/pikpak`命令](https://s3.bmp.ovh/imgs/2022/06/08/7e2eec33f35d17e2.png) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![`/pikpak`失败案例](https://s3.bmp.ovh/imgs/2022/06/08/812b258e14273fe2.png) | ![`/clean`命令](https://s3.bmp.ovh/imgs/2022/06/08/05049c4f5a73f29f.png) |
+
+# 更新日志
+<details>
+  
+    ## V0.0.2
+
+    - 添加账号管理功能，向机器人发送/account可命令获取使用帮助
+    - 优化代码结构
+
+    ## V0.0.1
+
+    - PikPak自动下载机器人发布啦~
+</details>
+
+# Todo
+
+- 多线程下载：多账号多线程下载、vip账号多线程下载
 
 # 注意事项
 
